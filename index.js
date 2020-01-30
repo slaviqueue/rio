@@ -1,13 +1,10 @@
-const fs = require('fs')
-const peg = require('pegjs')
+const parser = require('./src/parser')
 const makeInterpreter = require('./src/interpreter')
-
-const grammar = fs.readFileSync('./src/grammar.pegjs', 'utf-8')
-const parser = peg.generate(grammar)
 const interpret = makeInterpreter()
 
 function run (code) {
-  return interpret(parser.parse(code))
+  const result = interpret(parser.parse(code))
+  return result
 }
 
 const code = `

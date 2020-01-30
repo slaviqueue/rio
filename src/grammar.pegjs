@@ -1,5 +1,5 @@
 Program
-	= body:(ws expression:Expression ws { return expression })* { return { type: 'PRORGAM', body } }
+	= body:(ws expression:Expression ws { return expression })* { return { type: 'PROGRAM', body } }
 
 Expression
     = InfixExpression

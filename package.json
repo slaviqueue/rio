@@ -4,7 +4,7 @@
   "description": "rio language interpreter",
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/.bin/mocha test/**/*"
+    "test": "node_modules/.bin/mocha test/*"
   },
   "author": "",
   "license": "ISC",
