@@ -16,6 +16,6 @@ Or via infix notation:
 2 'sum' 32 'div' 0
 ```
 
-***Attention***, sinse arithmetical operators are just functions, mathematical operator precendence is not precerved. Infix function calls are left-asssosiative. So expression above will be calculated like this `(2 + 0) / 0`
+***Attention***, sinse arithmetical operators are just functions, mathematical operator precendence is not precerved. Infix function calls are left-asssosiative. So expression above will be calculated like this `(2 + 32) / 0`
 
 <img width="403" alt="Screen Shot 2020-01-30 at 6 36 11 PM" src="https://user-images.githubusercontent.com/20744231/73469730-8345de80-438f-11ea-933a-b56a01edc744.png">
