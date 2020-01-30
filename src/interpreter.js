@@ -3,7 +3,11 @@ const nativeFunctions = require('./native/functions')
 const IsNative = require('./native/IsNativeSymbol')
 
 const globalScope = {
-  '+': nativeFunctions.sum
+  '+': nativeFunctions.sum,
+  '-': nativeFunctions.subtract,
+  '*': nativeFunctions.multiply,
+  '/': nativeFunctions.divide,
+  equals: nativeFunctions.equal
 }
 
 function makeInterpreter () {
@@ -53,6 +57,14 @@ function makeInterpreter () {
 
       case 'INFIX_FUNCTION_CALL': {
         return interpret({ ...node, type: 'FUNCTION_CALL' })
+      }
+
+      case 'PREFIX_FUNCTION_CALL': {
+        return interpret({ ...node, type: 'FUNCTION_CALL' })
+      }
+
+      case 'CONDITION': {
+        return interpret(node.condition) ? interpret(node.ifTrue) : interpret(node.ifFalse)
       }
     }
   }

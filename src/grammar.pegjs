@@ -37,7 +37,7 @@ Condition "condition"
     = "if" strict_ws condition:Expression strict_ws
       "then" strict_ws ifTrue:Expression strict_ws
       "else" strict_ws ifFalse:Expression
-      { return { type: 'CONDITION', ifTrue, ifFalse } }
+      { return { type: 'CONDITION', condition, ifTrue, ifFalse } }
 
 InfixFunctionCall "infix function call"
 	= arg1:UnaryExpression strict_ws "'"callee:(QualifiedIdentifier / Identifier / Group)"'" strict_ws arg2:InfixExpression
