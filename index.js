@@ -11,10 +11,9 @@ const code = `
   value a is 5
   value b is 4
 
-  value test is function of (c, a) do 1 end
+  value test is function of () do 3 '+' 4 end
 
-
-  test(a, b)
+  test(1, 2)
 `
 
 console.log(run(code))

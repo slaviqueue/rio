@@ -40,12 +40,12 @@ Condition "condition"
       { return { type: 'CONDITION', ifTrue, ifFalse } }
 
 InfixFunctionCall "infix function call"
-	= arg1:UnaryExpression strict_ws "'"calee:(QualifiedIdentifier / Identifier / Group)"'" strict_ws arg2:InfixExpression
-    { return { type: 'INFIX_FUNCTION_CALL', calee, args: [arg1, arg2] } }
+	= arg1:UnaryExpression strict_ws "'"callee:(QualifiedIdentifier / Identifier / Group)"'" strict_ws arg2:InfixExpression
+    { return { type: 'INFIX_FUNCTION_CALL', callee, args: [arg1, arg2] } }
 
 PrefixFunctionCall
-	= calee:(QualifiedIdentifier / Identifier / Group)"'" strict_ws arg1:SimpleExpression
-    { return { type: 'PREFIX_FUNCTION_CALL', calee, args: [arg1] } }
+	= callee:(QualifiedIdentifier / Identifier / Group)"'" strict_ws arg1:SimpleExpression
+    { return { type: 'PREFIX_FUNCTION_CALL', callee, args: [arg1] } }
 
 FunctionCall "function call"
 	= callee:(QualifiedIdentifier / Identifier / Group) ws "(" ws args:Arguments? ws ")"
@@ -54,7 +54,7 @@ FunctionCall "function call"
 CurriedFuncionCall "function call"
 	= callee:FunctionCall
     	calls:(ws "(" ws args:Arguments? ws ")"
-        	{ return { type: 'FUNCTION_CALL', callee, args  } })+
+        	{ return { type: 'FUNCTION_CALL', callee, args: args || []  } })+
     { return calls.reduceRight((callee, call) => ({ ...call, callee })) }
 
 ImportStatement "import statement"
@@ -79,7 +79,7 @@ PropertyAccess "property access"
 Lambda "function declaration"
 	= "function" strict_ws "of" ws "(" ws args:LambdaParams? ws ")"
     	ws "do" strict_ws body:(expr:Expression strict_ws { return expr })* "end"
-    { return { type: 'LAMBDA', args, body } }
+    { return { type: 'LAMBDA', args: args || [], body } }
 
 QualifiedIdentifier
 	= namespace:Identifier "::" id:Identifier { return { type: 'QUALIFIED_IDENTIFIER', namespace, id } }

@@ -1,6 +1,10 @@
 const { stack, head, pop, empty, push } = require('./utils/stack')
+const nativeFunctions = require('./native/functions')
+const IsNative = require('./native/IsNativeSymbol')
 
-const globalScope = {}
+const globalScope = {
+  '+': nativeFunctions.sum
+}
 
 function makeInterpreter () {
   let callStack = stack(globalScope)
@@ -36,13 +40,19 @@ function makeInterpreter () {
         callStack = push(callStack, {})
 
         callee.args.forEach((arg, i) => {
-          head(callStack)[arg] = interpret(node.args[i])
+          head(callStack)[arg.value] = interpret(node.args[i])
         })
 
-        const result = last(callee.body.map(interpret))
+        const result = callee[IsNative]
+          ? callee.do(...callee.args.map((id) => lookup(callStack, id.value)))
+          : last(callee.body.map(interpret))
 
         callStack = pop(callStack)
         return result
+      }
+
+      case 'INFIX_FUNCTION_CALL': {
+        return interpret({ ...node, type: 'FUNCTION_CALL' })
       }
     }
   }
