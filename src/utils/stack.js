@@ -14,9 +14,14 @@ function pop ([head, ...stack]) {
   return stack
 }
 
+function empty (stack) {
+  return !stack.length
+}
+
 module.exports = {
   stack,
   push,
   head,
-  pop
+  pop,
+  empty
 }

@@ -1,4 +1,4 @@
-const { stack, head } = require('./utils/stack')
+const { stack, head, pop, empty } = require('./utils/stack')
 
 const globalScope = {}
 
@@ -26,11 +26,29 @@ function makeInterpreter () {
       case 'LAMBDA': {
         return node
       }
+
+      case 'FUNCTION_CALL': {
+
+      }
     }
   }
 
   interpret.callStack = callStack
   return interpret
+}
+
+function lookup (callStack, id) {
+  let tempStack = stack(...callStack)
+
+  while (!empty(tempStack)) {
+    if (head(tempStack)[id]) {
+      return head(tempStack)[id]
+    }
+
+    tempStack = pop(tempStack)
+  }
+
+  throw new Error(`${id} is not defined.`)
 }
 
 module.exports = makeInterpreter
