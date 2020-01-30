@@ -1,0 +1,16 @@
+{
+  "name": "rio",
+  "version": "1.0.0",
+  "description": "rio language interpreter",
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules/.bin/mocha test/**/*"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^7.0.1",
+    "pegjs": "^0.10.0"
+  }
+}
