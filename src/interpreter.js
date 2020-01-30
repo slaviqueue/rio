@@ -22,6 +22,10 @@ function makeInterpreter () {
       case 'NUMBER': {
         return node.value
       }
+
+      case 'LAMBDA': {
+        return node
+      }
     }
   }
 

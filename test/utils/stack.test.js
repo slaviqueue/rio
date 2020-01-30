@@ -1,6 +1,6 @@
 /* global describe it */
 const expect = require('chai').expect
-const { stack, push, head } = require('../../src/utils/stack')
+const { stack, push, head, pop } = require('../../src/utils/stack')
 
 describe('Stack', () => {
   describe('Stack::stack()', () => {
@@ -18,8 +18,8 @@ describe('Stack', () => {
     })
   })
 
-  describe('Stack::push()', () => {
-    it('pushes elements to stack', () => {
+  describe('Stack::push(stack, element)', () => {
+    it('pushes element to stack', () => {
       const callStack = stack(1)
       const newStack = push(callStack, 2)
 
@@ -27,10 +27,20 @@ describe('Stack', () => {
     })
   })
 
-  describe('Stack::head()', () => {
+  describe('Stack::head(stack)', () => {
     it('shows head of stack', () => {
       const callStack = stack(1)
       expect(head(callStack)).to.eq(1)
+    })
+  })
+
+  describe('Stack::pop()', () => {
+    it('pops stack', () => {
+      const callStack = stack(1, 2)
+      const newStack = pop(callStack)
+
+      expect(newStack.length).to.eq(1)
+      expect(newStack[0]).to.eq(2)
     })
   })
 })

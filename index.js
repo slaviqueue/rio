@@ -13,6 +13,8 @@ const code = `
 value a is 5
 value b is 4
 
+value test is function of (a) do 1 end
+
 
 `
 
