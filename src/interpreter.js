@@ -27,8 +27,8 @@ function makeInterpreter () {
         return node
       }
 
-      case 'FUNCTION_CALL': {
-
+      case 'IDENTIFIER': {
+        return lookup(callStack, node.value)
       }
     }
   }

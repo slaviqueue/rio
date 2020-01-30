@@ -8,14 +8,8 @@ function run (code) {
 }
 
 const code = `
-
-
-value a is 5
-value b is 4
-
-value test is function of (a) do 1 end
-
-
+  value a is 5
+  value b is 4
 `
 
 console.log(run(code))
