@@ -10,6 +10,11 @@ function run (code) {
 const code = `
   value a is 5
   value b is 4
+
+  value test is function of (c, a) do 1 end
+
+
+  test(a, b)
 `
 
 console.log(run(code))

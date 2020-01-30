@@ -1,9 +1,9 @@
-const { stack, head, pop, empty } = require('./utils/stack')
+const { stack, head, pop, empty, push } = require('./utils/stack')
 
 const globalScope = {}
 
 function makeInterpreter () {
-  const callStack = stack(globalScope)
+  let callStack = stack(globalScope)
 
   function interpret (node) {
     console.log(node)
@@ -30,6 +30,20 @@ function makeInterpreter () {
       case 'IDENTIFIER': {
         return lookup(callStack, node.value)
       }
+
+      case 'FUNCTION_CALL': {
+        const callee = interpret(node.callee)
+        callStack = push(callStack, {})
+
+        callee.args.forEach((arg, i) => {
+          head(callStack)[arg] = interpret(node.args[i])
+        })
+
+        const result = last(callee.body.map(interpret))
+
+        callStack = pop(callStack)
+        return result
+      }
     }
   }
 
@@ -49,6 +63,10 @@ function lookup (callStack, id) {
   }
 
   throw new Error(`${id} is not defined.`)
+}
+
+function last (list) {
+  return list[list.length - 1]
 }
 
 module.exports = makeInterpreter

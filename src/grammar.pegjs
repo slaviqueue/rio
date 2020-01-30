@@ -49,7 +49,7 @@ PrefixFunctionCall
 
 FunctionCall "function call"
 	= callee:(QualifiedIdentifier / Identifier / Group) ws "(" ws args:Arguments? ws ")"
-    { return { type: 'FUNCTION_CALL', callee, args } }
+    { return { type: 'FUNCTION_CALL', callee, args: args || [] } }
 
 CurriedFuncionCall "function call"
 	= callee:FunctionCall
