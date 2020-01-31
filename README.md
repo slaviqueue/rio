@@ -41,7 +41,7 @@ value greet is function of (name) do
 end
 ```
 
-In example above you can notice, that strings are concatenated with something, which is called `concat` and is enclosed in single quotes. `concat` is just some function, which accepts two string arguments and concatenate them. `'concat'` is a special synthax for infix function invocation. Any function which accepts two arguments can be invoked in this manner.
+In example above you can notice, that strings are concatenated with something, which is called `concat` and is enclosed in single quotes. `concat` is just some function, which accepts two string arguments and concatenate them. `'concat'` is a special syntax for infix function invocation. Any function which accepts two arguments can be invoked in this manner.
 
 ```
 value somehow_affected_by is function of (a, b) do
