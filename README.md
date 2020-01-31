@@ -28,3 +28,40 @@ Variables in Rio are immutable. To not confuse novice programmers with false exp
 value name is "Semen"
 ```
 We're just stating that something **is** something else.
+
+### Lambdas
+
+Functions in rio are high order, meaning they are data, as well as numbers, strings, etc. We can declare a function with `function of (arg, ...args) do ... end` notation. Result of function invocation is the last expression inside it's body (yay, just like in ruby; btw function declaration syntax is prety similar to what we have in ruby)
+
+For example:
+
+```
+value greet is function of (name) do
+  "Hello " 'concat' name 'concat' "!"
+end
+```
+
+In example above you can notice, that strings are concatenated with something, which is called `concat` and is enclosed in single quotes. `concat` is just some function, which accepts two string arguments and concatenate them. `'concat'` is a special synthax for infix function invocation. Any function which accepts two arguments can be invoked in this manner.
+
+```
+value somehow_affected_by is function of (a, b) do
+  div(sum(a, b), 2)
+end
+
+value result is 3 'somehow_affected_by' 4
+
+> 3.5
+```
+
+Prefix notation is supported as well:
+
+```
+value increment is function of (n) do
+  n '+' 1
+end
+
+value incremented_five is increment' 5
+
+> 6
+```
+
