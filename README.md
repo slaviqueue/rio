@@ -25,7 +25,7 @@ Or via infix notation:
 Variables in Rio are immutable. To not confuse novice programmers with false expectation of variable reassigment possibility, there's not assignment operator. Instead there's `is`, i.e:
 
 ```
-value name is "Semen"
+value name is "Simon"
 ```
 We're just stating that something **is** something else.
 
