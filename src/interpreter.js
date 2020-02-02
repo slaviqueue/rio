@@ -14,7 +14,6 @@ function makeInterpreter () {
   let callStack = stack(globalScope)
 
   function interpret (node) {
-    console.log(node)
     switch (node.type) {
       case 'PROGRAM': {
         return node.body.map(interpret)
@@ -22,6 +21,11 @@ function makeInterpreter () {
 
       case 'VALUE_DECLARATION': {
         const value = interpret(node.value)
+
+        if (head(callStack)[node.id.value]) {
+          throw new Error(`Constant ${node.id.value} cannot be reassigned`)
+        }
+
         head(callStack)[node.id.value] = value
 
         return value
@@ -36,7 +40,13 @@ function makeInterpreter () {
       }
 
       case 'IDENTIFIER': {
-        return lookup(callStack, node.value)
+        const value = lookup(callStack, node.value)
+
+        if (!value) {
+          throw new Error(`${node.value} is defined`)
+        }
+
+        return value
       }
 
       case 'FUNCTION_CALL': {
@@ -84,7 +94,7 @@ function lookup (callStack, id) {
     tempStack = pop(tempStack)
   }
 
-  throw new Error(`${id} is not defined.`)
+  return null
 }
 
 function last (list) {
