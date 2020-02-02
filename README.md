@@ -5,9 +5,29 @@ A little language for me to practice in interpreters theory and for programming 
 
 ### Why?
 
-I'm trying to make this language as much human readable as possible. Since Rio supports higher order functions, you can create your own prefix and infix operators like in Haskell (in fact they just look like operators, it's just syntactic sugar). Hopefully, this posibillity will allow one to create some kinds of pretty internal DSL's.
+For some reason, programming language designers are still making such things as arithmetical operations, pipe operators (`.` in haskell, `|>` in f-sharp) and event such utility stuff as printing output (`print` operator in perl) first class citizens of languages. By doing this, they bring  a lot of garbage to language axiomatics. Why the heck I can't import a function that does printing or function composition from some module or namespace?
 
-For now Rio has build in arithmetical operators, which are just functions and should be called in lisp manner, i.e:
+Idea of Rio is to get rid of how much out-of-the-box-syntax-stuff as possible and to give programmer a freedom to define his own operators and stuff. This freedom gives you a possibility to create your own pretty internal DSL's.
+
+For example:
+
+```
+value <| is function of (fn, v) do fn(v) end
+values result is do_some_more_complex_stuff '<|' do_complex_stuff '<|' do_stuff '<|' 4
+```
+
+That's all, you had to write just a single line of code to be able to use f-sharp's pipe operator. But in exchange, you've now got a possibility to define any operator you want by just creating a function with any name you want.
+
+```
+value >>> is function of (value) do log(value) end
+>>>' "Hello, world"
+```
+
+For now Rio has build-in arithmetical operators. In future I'm gonna move them to separate namespace, so that client will need to import them implicitly, like:
+```
+use Math from "Math"
+```
+Now operators int rio are just built in functions and should be called in a lisp manner:
 
 ```javascript
 sum(div(2, 32), 0)
@@ -64,4 +84,8 @@ value incremented_five is increment' 5
 
 > 6
 ```
+
+### Todos
+- [ ] Introduce namespaces
+- [ ] Implement basic data structures
 
