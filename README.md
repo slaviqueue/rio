@@ -23,7 +23,7 @@ value >>> is function of (value) do log(value) end
 >>>' "Hello, world"
 ```
 
-For now Rio has build-in arithmetical operators. In future I'm gonna move them to separate namespace, so that client will need to import them implicitly, like:
+For now Rio has build-in arithmetical operators. In future I'm gonna move them to separate namespace, so that client will need to import them explicitly, like:
 ```
 use Math from "Math"
 ```
