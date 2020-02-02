@@ -27,7 +27,7 @@ For now Rio has build-in arithmetical operators. In future I'm gonna move them t
 ```
 use Math from "Math"
 ```
-Now operators in rio are just built in functions and should be called in a lisp manner:
+Operators in rio are just functions and should be called in a lisp manner:
 
 ```javascript
 sum(div(2, 32), 0)
