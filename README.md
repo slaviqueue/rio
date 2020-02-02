@@ -42,7 +42,7 @@ Or via infix notation:
 
 ### Constant declaration
 
-Variables in Rio are immutable. To not confuse novice programmers with false expectation of variable reassigment possibility, there's not assignment operator. Instead there's `is`, i.e:
+Variables in Rio are immutable. To not confuse novice programmers with false expectation of variable reassigment possibility, there's no assignment operator. Instead there's `is`, i.e:
 
 ```
 value name is "Simon"
