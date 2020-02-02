@@ -1,5 +1,5 @@
 # rio🦜
-A little language for me to practice in interpreters theory.
+A little language, that I'm developing to practice crafting interpreters.
 
 <img width="403" alt="Screen Shot 2020-01-30 at 6 36 11 PM" src="https://user-images.githubusercontent.com/20744231/73469730-8345de80-438f-11ea-933a-b56a01edc744.png">
 
