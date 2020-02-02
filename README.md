@@ -5,7 +5,7 @@ A little language for me to practice in interpreters theory.
 
 ### Why?
 
-For some reason, programming language designers are still making such things as arithmetical operations, pipe operators (`.` in haskell, `|>` in f-sharp) and event such utility stuff as printing output (`print` operator in perl) first class citizens of languages. By doing this, they bring  a lot of garbage to language axiomatics. Why the heck I can't import a function that does printing or function composition from some module or namespace?
+For some reason, programming language designers are still making such things as arithmetical operations, pipe operators (`.` in haskell, `|>` in f-sharp) and even such utility stuff as printing output (`print` operator in perl) first class citizens of languages. By doing this, they bring  a lot of garbage to language axiomatics. Why the heck I can't import a function that does printing or function composition from some module or namespace?
 
 Idea of Rio is to get rid of how much out-of-the-box-syntax-stuff as possible and to give programmer a freedom to define his own operators and stuff. This freedom gives you a possibility to create your own pretty internal DSL's.
 
