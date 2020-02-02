@@ -16,7 +16,7 @@ value <| is function of (fn, v) do fn(v) end
 values result is do_some_more_complex_stuff '<|' do_complex_stuff '<|' do_stuff '<|' 4
 ```
 
-That's all, you had to write just a single line of code to be able to use f-sharp's pipe operator. But in exchange, you've now got a possibility to define any operator you want by just creating a function with any name you want.
+That's all, you had to write just a single line of code to be able to use f-sharp's pipe operator. But in exchange, you've  got a possibility to define any operator you wish by just creating a function with any name you want.
 
 ```
 value >>> is function of (value) do log(value) end
