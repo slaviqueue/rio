@@ -27,7 +27,7 @@ For now Rio has build-in arithmetical operators. In future I'm gonna move them t
 ```
 use Math from "Math"
 ```
-Now operators int rio are just built in functions and should be called in a lisp manner:
+Now operators in rio are just built in functions and should be called in a lisp manner:
 
 ```javascript
 sum(div(2, 32), 0)
@@ -38,7 +38,7 @@ Or via infix notation:
 2 'div' 32 'sum' 0
 ```
 
-***Attention***, since arithmetical operators are just functions, mathematical operator precendence is not precerved. Infix function calls are right-asssociative. So expression above will be calculated like this `2 / (32 + 0)`
+***Attention***, since arithmetical operators are just functions, mathematical operator precendence is not preserved. Infix function calls are right-asssociative. So expression above will be calculated like this `2 / (32 + 0)`
 
 ### Constant declaration
 
