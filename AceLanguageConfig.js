@@ -37,7 +37,7 @@ var TextHighlightRules = require("./text_highlight_rules").TextHighlightRules;
 var RioHighlightRules = function() {
 
     var keywords = (
-        "value|is|function|of|do|end|if|then|else"
+        "value|is|function|of|do|end|if|then|else|use|from"
     );
 
     var keywordMapper = this.createKeywordMapper({
