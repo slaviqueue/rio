@@ -5,7 +5,7 @@ Expression
     = InfixExpression
 
 InfixExpression
-	= InfixFunctionCall
+    = InfixFunctionCall
     / UnaryExpression
 
 UnaryExpression
@@ -13,7 +13,7 @@ UnaryExpression
     / SimpleExpression
 
 SimpleExpression
-	= ValueDeclaration
+    = ValueDeclaration
     / PrefixFunctionCall
     / Condition
     / Lambda
@@ -28,11 +28,11 @@ SimpleExpression
     / String
 
 FunctionInvokation
-	= CurriedFuncionCall
+    = CurriedFuncionCall
     / FunctionCall
 
 Group "brace group"
-	= "(" ws expr:Expression ws ")" { return { type: 'GROUP', children: expr } }
+    = "(" ws expr:Expression ws ")" { return { type: 'GROUP', children: expr } }
 
 Condition "condition"
     = "if" strict_ws condition:Expression strict_ws
@@ -41,25 +41,25 @@ Condition "condition"
       { return { type: 'CONDITION', condition, ifTrue, ifFalse } }
 
 InfixFunctionCall "infix function call"
-	= arg1:UnaryExpression strict_ws "'"callee:(QualifiedIdentifier / Identifier / Group)"'" strict_ws arg2:InfixExpression
+    = arg1:UnaryExpression strict_ws "'"callee:(QualifiedIdentifier / Identifier / Group)"'" strict_ws arg2:InfixExpression
     { return { type: 'INFIX_FUNCTION_CALL', callee, args: [arg1, arg2] } }
 
 PrefixFunctionCall
-	= callee:(QualifiedIdentifier / Identifier / Group)"'" strict_ws arg1:SimpleExpression
+    = callee:(QualifiedIdentifier / Identifier / Group)"'" strict_ws arg1:SimpleExpression
     { return { type: 'PREFIX_FUNCTION_CALL', callee, args: [arg1] } }
 
 FunctionCall "function call"
-	= callee:(QualifiedIdentifier / Identifier / Group) ws "(" ws args:Arguments? ws ")"
+    = callee:(QualifiedIdentifier / Identifier / Group) ws "(" ws args:Arguments? ws ")"
     { return { type: 'FUNCTION_CALL', callee, args: args || [] } }
 
 CurriedFuncionCall "function call"
-	= callee:FunctionCall
+    = callee:FunctionCall
     	calls:(ws "(" ws args:Arguments? ws ")"
         	{ return { type: 'FUNCTION_CALL', callee, args: args || []  } })+
     { return calls.reduceRight((callee, call) => ({ ...call, callee })) }
 
 ImportStatement "import statement"
-	= "use" strict_ws what:Identifier strict_ws "from" strict_ws from:String
+    = "use" strict_ws what:Identifier strict_ws "from" strict_ws from:String
     { return { type: 'IMPORT', what, from  } }
 
 Arguments "arguments"
