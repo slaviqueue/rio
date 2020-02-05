@@ -23,7 +23,7 @@ value >>> is function of (value) do log(value) end
 >>>' "Hello, world"
 ```
 
-For now Rio has build-in arithmetical operators. In future I'm gonna move them to separate namespace, so that client will need to import them explicitly, like:
+For now Rio has build-in arithmetical operators. Currently they are global, since modules are not supported yet, but in future I'm gonna move them to separate module, so that client will need to import them explicitly, like:
 ```
 use Math from "Math"
 ```
@@ -83,6 +83,28 @@ end
 value incremented_five is increment' 5
 
 > 6
+```
+
+### Lists
+
+There are lists. List literals are similar to ones in js. There are `length`, `head`, `tail` and `concat` functions for manipulating them. You can see example of basic lists usage below:
+
+```
+value list is [1, 2, 3]
+
+value is_empty is function of (list) do
+  length' list 'equals' 0
+end
+
+value map is function of (list, fn) do
+  if is_empty' list
+    then list
+    else [fn' head' list] 'concat' (tail' list 'map' fn)
+end
+
+value increment is function of (n) do n '+' 1 end
+
+[1, 2, 3, 4, 5, 6] 'map' increment
 ```
 
 ### Todos
