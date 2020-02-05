@@ -86,7 +86,7 @@ QualifiedIdentifier
     = namespace:Identifier "::" id:Identifier { return { type: 'QUALIFIED_IDENTIFIER', namespace, id } }
 
 Identifier "identifier"
-    = (! Keyword value:([a-zA-Z_\+\\\*\-=<>])+ { return { type: 'IDENTIFIER', value: value.join('') } })
+    = (! Keyword value:([a-zA-Z_\+\\\*\-\|=<>])+ { return { type: 'IDENTIFIER', value: value.join('') } })
 
 Number "number"
     = value:(ints:[0-9]+ after_coma:("."digits:[0-9]* { return "." + digits.join('') })?
