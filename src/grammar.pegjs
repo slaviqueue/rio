@@ -24,6 +24,7 @@ SimpleExpression
     / QualifiedIdentifier
     / Identifier
     / Number
+    / Array
     / String
 
 FunctionInvokation
@@ -93,6 +94,10 @@ Number "number"
 
 String "string"
 	= '"' value:(! '"' char:. { return char })* '"' { return { type: 'STRING', value: value.join('') } }
+
+Array "array"
+	= '[' ws head:Expression? tail:(ws "," ws expr:Expression { return expr })* ws "]"
+    { return { type: 'ARRAY', value: head ? [head, ...tail] : [] } }
 
 Keyword "keyword"
 	= ("value" / "function" / "of" / "is" / "is not" / "do" / "end" / "use" / "from" / "then" / "if") ![A-Za-z_]
