@@ -8,30 +8,21 @@ function run (code) {
 }
 
 const code = `
-  value a is 5
-  value b is 4
+  value list is [1, 2, 3]
 
-  value multiplied_by is *
-  value minus is -
-
-  value fac is function of (n) do
-    if 1 'equals' n
-      then n
-      else n 'multiplied_by' fac(n 'minus' 1)
+  value is_empty is function of (list) do
+    length' list 'equals' 0
   end
 
-  value do_complex_shit is function of (n) do
-    value a is n '+' 1
-    value b is a '+' 3
-    b
+  value map is function of (list, fn) do
+    if is_empty' list
+      then list
+      else [fn' head' list] 'concat' (tail' list 'map' fn)
   end
 
-  value process is function of (fn, n) do fn' n end
+  value increment is function of (n) do n '+' 1 end
 
-  do_complex_shit 'process' fac 'process' 4
-
-  fac' a
-  fac' b
+  [1, 2, 3, 4, 5, 6] 'map' increment
 `
 
 console.log(run(code))

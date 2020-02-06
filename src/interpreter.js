@@ -1,3 +1,4 @@
+const { isNil } = require('lodash')
 const { stack, head, pop, empty, push } = require('./utils/stack')
 const nativeFunctions = require('./native/functions')
 const IsNative = require('./native/IsNativeSymbol')
@@ -7,7 +8,12 @@ const globalScope = {
   '-': nativeFunctions.subtract,
   '*': nativeFunctions.multiply,
   '/': nativeFunctions.divide,
-  equals: nativeFunctions.equal
+  equals: nativeFunctions.equal,
+  head: nativeFunctions.head,
+  tail: nativeFunctions.tail,
+  concat: nativeFunctions.concat,
+  log: nativeFunctions.log,
+  length: nativeFunctions.length
 }
 
 function makeInterpreter () {
@@ -35,18 +41,30 @@ function makeInterpreter () {
         return node.value
       }
 
+      case 'STRING': {
+        return node.value
+      }
+
       case 'LAMBDA': {
         return node
+      }
+
+      case 'GROUP': {
+        return interpret(node.children)
       }
 
       case 'IDENTIFIER': {
         const value = lookup(callStack, node.value)
 
         if (!value) {
-          throw new Error(`${node.value} is defined`)
+          throw new Error(`${node.value} is not defined`)
         }
 
         return value
+      }
+
+      case 'ARRAY': {
+        return node.value.map(interpret)
       }
 
       case 'FUNCTION_CALL': {
@@ -87,7 +105,7 @@ function lookup (callStack, id) {
   let tempStack = stack(...callStack)
 
   while (!empty(tempStack)) {
-    if (head(tempStack)[id]) {
+    if (!isNil(head(tempStack)[id])) {
       return head(tempStack)[id]
     }
 
