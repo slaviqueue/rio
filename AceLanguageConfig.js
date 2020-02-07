@@ -35,6 +35,9 @@ var RioHighlightRules = function() {
         }, {
             token : "text",
             regex : "\\s+"
+        }, {
+            token: "comment",
+            regex: ";.*;"
         } ]
     };
     this.normalizeRules();
