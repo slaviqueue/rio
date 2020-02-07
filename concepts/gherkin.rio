@@ -1,0 +1,10 @@
+use "gherkin"
+use "tests/breaker-game"
+
+; a valid rio code used to write bdd tests via gherkin notation ;
+
+Case' "Breaker joins a game"
+  Given' the' "Maker" has' started_a_game_with_the_word' "silky"
+  When' the' "Breaker" joins_the_Makers_game
+  Then' the' "Breaker" must' guess_a_word_with_5_characters
+  EndCase' 0
