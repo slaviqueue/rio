@@ -1,5 +1,5 @@
-const parser = require('./src/parser')
-const makeInterpreter = require('./src/interpreter')
+const { parser } = require('./src/parser')
+const { makeInterpreter } = require('./src/interpreter')
 const { last } = require('./src/utils/last')
 
 const interpret = makeInterpreter()

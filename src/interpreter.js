@@ -55,4 +55,4 @@ function makeInterpreter () {
   return interpret
 }
 
-module.exports = makeInterpreter
+module.exports = { makeInterpreter }
