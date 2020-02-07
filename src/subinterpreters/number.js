@@ -1,5 +1,5 @@
 function number () {
-  return (node) => node.value
+  return (node) => Number(node.value)
 }
 
 module.exports = { number }

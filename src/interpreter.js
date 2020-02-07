@@ -12,6 +12,7 @@ const { program } = require('./subinterpreters/program')
 const { valueDeclaration } = require('./subinterpreters/value-declaration')
 const { array } = require('./subinterpreters/array')
 const { group } = require('./subinterpreters/group')
+const { string } = require('./subinterpreters/string')
 
 const globalScope = {
   '+': nativeFunctions.sum,
@@ -37,7 +38,8 @@ const TypeToSubinterpreter = {
   PREFIX_FUNCTION_CALL: prefixFunctionCall,
   CONDITION: condition,
   ARRAY: array,
-  GROUP: group
+  GROUP: group,
+  STRING: string
 }
 
 function makeInterpreter () {
