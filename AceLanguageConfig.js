@@ -14,7 +14,7 @@ var RioHighlightRules = function() {
 
     var keywordMapper = this.createKeywordMapper({
         "keyword": keywords,
-    }, "identifier", true);
+    }, "identifier", false);
 
     this.$rules = {
         "start" : [ {
