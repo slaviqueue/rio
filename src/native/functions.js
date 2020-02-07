@@ -1,4 +1,4 @@
-const IsNative = require('./IsNativeSymbol')
+const { IsNative } = require('./IsNativeSymbol')
 
 module.exports = {
   sum: {

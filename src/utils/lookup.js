@@ -1,10 +1,11 @@
+const { isNil } = require('lodash')
 const { empty, head, pop, stack } = require('./stack')
 
 function lookup (callStack, id) {
   let tempStack = stack(...callStack)
 
   while (!empty(tempStack)) {
-    if (head(tempStack)[id]) {
+    if (!isNil(head(tempStack)[id])) {
       return head(tempStack)[id]
     }
 

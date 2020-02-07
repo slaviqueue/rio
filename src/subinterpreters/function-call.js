@@ -3,20 +3,20 @@ const { lookup } = require('../utils/lookup')
 const { last } = require('../utils/last')
 const { IsNative } = require('../native/IsNativeSymbol')
 
-function functionCall (interpret, callStack) {
+function functionCall (interpret, env) {
   return (node) => {
     const callee = interpret(node.callee)
-    callStack = push(callStack, {})
+    env.callStack = push(env.callStack, {})
 
     callee.args.forEach((arg, i) => {
-      head(callStack)[arg.value] = interpret(node.args[i])
+      head(env.callStack)[arg.value] = interpret(node.args[i])
     })
 
     const result = callee[IsNative]
-      ? callee.do(...callee.args.map((id) => lookup(callStack, id.value)))
+      ? callee.do(...callee.args.map((id) => lookup(env.callStack, id.value)))
       : last(callee.body.map(interpret))
 
-    callStack = pop(callStack)
+    env.callStack = pop(env.callStack)
     return result
   }
 }
