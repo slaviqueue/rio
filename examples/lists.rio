@@ -1,3 +1,6 @@
+; here are some examples with lists ;
+; you can define a list with square brackets syntax ;
+
 value list is [1, 2, 3]
 
 value is_empty is function of (list) do
