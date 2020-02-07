@@ -3,6 +3,7 @@ Program
 
 Expression
     = InfixExpression
+    / Comment
 
 InfixExpression
     = InfixFunctionCall
@@ -104,6 +105,9 @@ Keyword "keyword"
 
 ws "whitespace"
     = [\n\t ]*
+
+Comment "comment"
+	= ";"([^;]*)";" { return null }
 
 strict_ws "whitespace"
     = [\n\t ]+

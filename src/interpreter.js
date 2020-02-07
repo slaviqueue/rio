@@ -48,6 +48,10 @@ function makeInterpreter () {
   }
 
   function interpret (node) {
+    if (!node) {
+      return
+    }
+
     return TypeToSubinterpreter[node.type](interpret, env)(node)
   }
 
