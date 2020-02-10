@@ -4,4 +4,9 @@ value curried_sum is function of (a) do
   end
 end
 
-curried_sum(a)(b)
+value regular_sum is function of (a, b) do
+  a '+' b
+end
+
+log' curried_sum(2)(4)
+log' regular_sum(2, 4)

@@ -18,10 +18,15 @@ function empty (stack) {
   return !stack.length
 }
 
+function copy (copiable) {
+  return stack(...copiable)
+}
+
 module.exports = {
   stack,
   push,
   head,
   pop,
-  empty
+  empty,
+  copy
 }
