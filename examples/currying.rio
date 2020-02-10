@@ -8,5 +8,5 @@ value regular_sum is function of (a, b) do
   a '+' b
 end
 
-log' curried_sum(2)(4)
-log' regular_sum(2, 4)
+log' (curried_sum' 2)' 4
+log' (2 'regular_sum' 4)
