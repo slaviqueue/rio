@@ -1,0 +1,7 @@
+value curried_sum is function of (a) do
+  function of (b) do
+    a '+' b
+  end
+end
+
+curried_sum(a)(b)
