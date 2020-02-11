@@ -1,18 +1,15 @@
 const { isNil } = require('lodash')
-const { empty, head, pop, stack } = require('./stack')
 
-function lookup (callStack, id) {
-  let tempStack = stack(...callStack)
-
-  while (!empty(tempStack)) {
-    if (!isNil(head(tempStack)[id])) {
-      return head(tempStack)[id]
-    }
-
-    tempStack = pop(tempStack)
+function lookup (scope, id) {
+  if (scope.local.hasOwnProperty(id)) {
+    return scope.local[id]
   }
 
-  throw new Error(`${id} is not defined.`)
+  if (!scope.parent) {
+    throw new Error(`${id} is not defined`)
+  }
+
+  return lookup(scope.parent, id)
 }
 
 module.exports = { lookup }

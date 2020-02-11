@@ -1,4 +1,5 @@
 const { stack } = require('./utils/stack')
+const { frame, scope } = require('./utils/scope')
 const nativeFunctions = require('./native/functions')
 
 const { condition } = require('./subinterpreters/condition')
@@ -27,6 +28,17 @@ const globalScope = {
   length: nativeFunctions.length
 }
 
+globalScope['+'].scope = scope(null, globalScope)
+globalScope['*'].scope = scope(null, globalScope)
+globalScope['/'].scope = scope(null, globalScope)
+globalScope['-'].scope = scope(null, globalScope)
+globalScope.equals.scope = scope(null, globalScope)
+globalScope.head.scope = scope(null, globalScope)
+globalScope.tail.scope = scope(null, globalScope)
+globalScope.concat.scope = scope(null, globalScope)
+globalScope.log.scope = scope(null, globalScope)
+globalScope.length.scope = scope(null, globalScope)
+
 const TypeToSubinterpreter = {
   PROGRAM: program,
   VALUE_DECLARATION: valueDeclaration,
@@ -44,7 +56,7 @@ const TypeToSubinterpreter = {
 
 function makeInterpreter () {
   const env = {
-    callStack: stack(globalScope)
+    callStack: stack(frame(scope(null, globalScope)))
   }
 
   function interpret (node) {

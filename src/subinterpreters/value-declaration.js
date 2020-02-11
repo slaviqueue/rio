@@ -1,14 +1,14 @@
-const { head } = require('../utils/stack')
+const { currentFrameScope } = require('../utils/scope')
 
 function valueDeclaration (interpret, { callStack }) {
   return (node) => {
     const value = interpret(node.value)
 
-    if (head(callStack)[node.id.value]) {
+    if (currentFrameScope(callStack).local[node.id.value]) {
       throw new Error(`Constant ${node.id.value} cannot be reassigned`)
     }
 
-    head(callStack)[node.id.value] = value
+    currentFrameScope(callStack).local[node.id.value] = value
 
     return value
   }

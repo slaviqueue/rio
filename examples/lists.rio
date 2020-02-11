@@ -8,7 +8,7 @@ value is_empty is function of (list) do
 end
 
 value map is function of (list, fn) do
-  if is_empty' list
+  if length' list 'equals' 0
     then list
     else [fn' head' list] 'concat' (tail' list 'map' fn)
 end

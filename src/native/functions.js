@@ -28,22 +28,24 @@ module.exports = {
   },
   head: {
     [IsNative]: true,
-    args: [{ value: 'a' }],
+    args: [{ value: 'head_a' }],
     do: ([head]) => head
   },
   tail: {
     [IsNative]: true,
-    args: [{ value: 'a' }],
+    args: [{ value: 'atail_a' }],
     do: ([head, ...tail]) => tail
   },
   concat: {
     [IsNative]: true,
-    args: [{ value: 'a' }, { value: 'b' }],
-    do: (firstList, secondList) => [...firstList, ...secondList]
+    args: [{ value: 'liast_a' }, { value: 'last_b' }],
+    do: (firstList, secondList) => {
+      return [...firstList, ...secondList]
+    }
   },
   length: {
     [IsNative]: true,
-    args: [{ value: 'list' }],
+    args: [{ value: 'lissdfdst' }],
     do: (list) => list.length
   },
   log: {

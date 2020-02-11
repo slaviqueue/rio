@@ -4,4 +4,18 @@ value curried_sum is function of (a) do
   end
 end
 
-curried_sum(a)(b)
+;value bug_test_b is function of () do
+  value f is 5
+  bug_test_a()
+end
+
+value bug_test_a is function of () do
+  log' f
+end
+
+bug_test_b()
+;
+value a is 1
+value b is 2
+
+log' curried_sum(a)(b)
