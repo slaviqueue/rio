@@ -1,5 +1,6 @@
 const { stack } = require('./utils/stack')
 const nativeFunctions = require('./native/functions')
+const { makeScope, makeStackFrame } = require('./utils/scope')
 
 const { condition } = require('./subinterpreters/condition')
 const { functionCall } = require('./subinterpreters/function-call')
@@ -27,6 +28,9 @@ const globalScope = {
   length: nativeFunctions.length
 }
 
+globalScope.log.scope.parent = globalScope
+globalScope['+'].scope.parent = globalScope
+console.log(globalScope)
 const TypeToSubinterpreter = {
   PROGRAM: program,
   VALUE_DECLARATION: valueDeclaration,
@@ -44,7 +48,7 @@ const TypeToSubinterpreter = {
 
 function makeInterpreter () {
   const env = {
-    callStack: stack(globalScope)
+    callStack: stack(makeStackFrame({ id: 'global', scope: makeScope(null, globalScope) }))
   }
 
   function interpret (node) {

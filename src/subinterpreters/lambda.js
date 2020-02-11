@@ -1,9 +1,10 @@
-const { copy } = require('../utils/stack')
+const { head } = require('../utils/stack')
+const { makeScope } = require('../utils/scope')
 
 function lambda (interpret, env) {
   return (node) => ({
     ...node,
-    context: copy(env.callStack)
+    scope: makeScope({ parent: head(env.callStack).scope, local: {} })
   })
 }
 

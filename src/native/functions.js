@@ -5,60 +5,60 @@ module.exports = {
     [IsNative]: true,
     args: [{ value: 'a' }, { value: 'b' }],
     do: (a, b) => a + b,
-    context: []
+    scope: { local: {} }
   },
   subtract: {
     [IsNative]: true,
     args: [{ value: 'a' }, { value: 'b' }],
     do: (a, b) => a - b,
-    context: []
+    scope: { local: {} }
   },
   multiply: {
     [IsNative]: true,
     args: [{ value: 'a' }, { value: 'b' }],
     do: (a, b) => a * b,
-    context: []
+    scope: { local: {} }
   },
   divide: {
     [IsNative]: true,
     args: [{ value: 'a' }, { value: 'b' }],
     do: (a, b) => a / b,
-    context: []
+    scope: { local: {} }
   },
   equal: {
     [IsNative]: true,
     args: [{ value: 'a' }, { value: 'b' }],
     do: (a, b) => a === b,
-    context: []
+    scope: { local: {} }
   },
   head: {
     [IsNative]: true,
     args: [{ value: 'a' }],
     do: ([head]) => head,
-    context: []
+    scope: { local: {} }
   },
   tail: {
     [IsNative]: true,
     args: [{ value: 'a' }],
     do: ([head, ...tail]) => tail,
-    context: []
+    scope: { local: {} }
   },
   concat: {
     [IsNative]: true,
     args: [{ value: 'a' }, { value: 'b' }],
     do: (firstList, secondList) => [...firstList, ...secondList],
-    context: []
+    scope: { local: {} }
   },
   length: {
     [IsNative]: true,
     args: [{ value: 'list' }],
     do: (list) => list.length,
-    context: []
+    scope: { local: {} }
   },
   log: {
     [IsNative]: true,
     args: [{ value: 'loggable' }],
     do: (loggable) => console.log(JSON.stringify(loggable)),
-    context: []
+    scope: { local: {} }
   }
 }

@@ -1,12 +1,7 @@
 value curried_sum is function of (a) do
   function of (b) do
-    a '+' b
+    a
   end
 end
 
-value regular_sum is function of (a, b) do
-  a '+' b
-end
-
 log' (curried_sum' 2)' 4
-log' (2 'regular_sum' 4)
